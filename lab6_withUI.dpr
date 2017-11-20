@@ -24,7 +24,7 @@ type
  var a: tmatrix;
      iindekses,jindekses: TArrayStek;
      Size,i,j,h,t,c1,dlina,schet: Integer;
-     sosedi,konecPr,prav: boolean;
+     sosedi,konecPr,prav,PROVERKA: boolean;
      b,v : tmatrixb;
      c : tcharmas;
      stroka1: string[ctroki];
@@ -262,10 +262,23 @@ begin
      back(i,j,size);
      {writeln('posle backa i = ',i,' j= ',j)}
      FindSosedi(i,j,sosedi);
+     if (i=0) and (j=0) then
+      begin
+       sosedi:=True;
+      end;
      until sosedi=True;
      end;
    end;
+   if (i=0) and (j=0) and (sosedi=true) then
+   begin
+    Writeln('В вашем массиве нету выхода');
+    proverka:=True;
+    KONECPR:=True;
+   end;
+
    until konecPr=True;
+   if proverka=False then
+   begin
    stroka1:=('Мы нашли выход, ведь выход есть всегда!');
    dlina:=Length(stroka1);
    for i:=1 to dlina do
@@ -328,5 +341,7 @@ begin
     Writeln;
     writeln('Для завершения нажмите клавишу Enter...');
    Readln;
+   end
+   else Readln;
 end.
 
