@@ -23,7 +23,7 @@ type
 
  var a: tmatrix;
      iindekses,jindekses: TArrayStek;
-     Size,i,j,t,c1,dlina,schet,randomn: Integer;
+     Size,i,j,c1,dlina,schet,randomn: Integer;
      sosedi,konecPr,prav,PROVERKA: boolean;
      b,v : tmatrixb;
      c : tcharmas;
@@ -60,9 +60,10 @@ procedure FindSosedi( var i,j:Integer; var sosedi: boolean );
 procedure konec( var i,j: integer; var konecpr: boolean);
  begin
   if a[i,j]=1 then
+  begin
    if  (j=c1) or (i=c1) or (j=1) or (i=1) then begin konecPr:=True; b[i,j]:=1; end;
-    if (j<>c1) and (i<>c1) and (i<>1) and (j<>1) then konecpr:=False;
-
+   if (j<>c1) and (i<>c1) and (i<>1) and (j<>1) then konecpr:=False;
+  end;
  end;
 
 procedure RTurn(var i,j,size,schet: Integer;var b: TMatrixB);
@@ -282,7 +283,6 @@ begin
     proverka:=True;
     KONECPR:=True;
    end;
-
    until konecPr=True;
    if proverka=False then
    begin
@@ -321,7 +321,7 @@ begin
     for j:=1 to n do
      begin
        if b[i,j]=0 then c[i,j]:=#149;
-       if b[i,j]=1 then c[i,j]:=#152;
+       if b[i,j]=1 then c[i,j]:=#127;
        write(' ');
      end;
     end;
